@@ -1,0 +1,109 @@
+<%- include('header') %>
+
+<div class="main-panel">        
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-md-8 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Customer Form</h4>
+              <p class="card-description">
+                Enter Customer Details
+              </p>
+              <form class="forms-sample" method="post" action="/customer/insertCustomers" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Bank Name</label>
+                  <select name="BankNameID" id="BankName" class="form-control" onchange="getbankBranch()">
+                      <option value="">--- Select Bank ---</option>
+                      <% for(var bn of  name) { %>
+                          <option value="<%= bn.id %>"><%= bn.BankName %></option>
+                      <% } %>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Bank Branch</label>
+                  <select name="BankBranchID" id="BankBranch" class="form-control">
+                      <option value="">--- Select Bank Branch ---</option>
+                      <% for(var bn of  name) { %>
+                          <option value="<%= bn.id %>"><%= bn.BankName %></option>
+                      <% } %>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername1">First Name</label>
+                  <input type="text" name="fname" class="form-control" id="exampleInputUsername1" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Last Name</label>
+                  <input type="text" name="lname" class="form-control" id="exampleInputUsername1" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="text" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <% var city = ['Surat', 'Vadodra', 'Rajkot', 'Ahemadabad'] %>
+                  <label for="exampleInputPassword1">City :</label>
+                  <select name="city" id="city" class="form-control">
+                    <option value="">--- Select City ---</option>
+                    <% for (var c of city) { %>
+                      <option value="<%= c %>"><%= c %></option>
+                    <% } %>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputConfirmPassword1">Gender &nbsp; : &nbsp;&nbsp;&nbsp;</label>
+                  <input type="radio" class="form-check-input" id="exampleInputConfirmPassword1" name="gender" value="male">&nbsp;&nbsp;<label for="">Male</label>&nbsp;&nbsp;&nbsp;
+                  <input type="radio" class="form-check-input" id="exampleInputConfirmPassword1" name="gender" value="female">&nbsp;&nbsp;<label for="">Female</label>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Hobby &nbsp;:&nbsp;&nbsp;&nbsp;</label>
+                  <input type="checkbox" class="form-check-input" name="hobby[]" value="Reading">&nbsp;<label for="">Reading</label>&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input" name="hobby[]" value="Playing">&nbsp;<label for="">Playing</label>&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input" name="hobby[]" value="Gaming">&nbsp;<label for="">Gaming</label>&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Description :</label>
+                  <textarea name="description" id="description" class="form-control" style="min-height: 4rem;" placeholder="About Yourself In Brief"></textarea>
+                </div>
+                <div class="from-group">
+                  <label for="exampleInputPassword1">Picture :</label>
+                  <input type="file" class="form-control" name="ProfilePicture">
+                </div>
+                <button type="Submit" class="btn btn-primary me-2">Submit</button>
+                <a class="btn btn-light">Cancel</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script>
+      function getbankBranch()
+      {
+        $.ajax({
+                url : '/employee/getbranchname',
+                type : 'post',
+                data : {
+                    'Branch' :  document.getElementById('BankName').value
+                },
+                success : (res) => {
+                    $('#BankBranch').html(res)
+                }
+            })
+      }
+    </script>
+
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <%- include('footer') %>
+    <!-- partial -->
+</div>
+</div>

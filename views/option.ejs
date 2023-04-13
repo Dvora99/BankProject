@@ -1,0 +1,6 @@
+<select>
+    <option>--- Select Bank Branch ---</option>
+    <% for(var bbn of branchname) { %>
+        <option value="<%= bbn.id %>"><%= bbn.BankBranch %></option>
+    <% } %>
+</select>

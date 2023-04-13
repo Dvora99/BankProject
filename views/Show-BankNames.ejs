@@ -1,0 +1,50 @@
+<%- include('header') %>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Admin Details</h4>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>
+                        No.
+                      </th>
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Action 
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% var i = 1 %>
+                    <% for (var BD of BankData) { %>
+                    <tr>
+                      <td>
+                        <%= i++ %>
+                      </td>
+                      <td>
+                        <%= BD.BankName %>
+                      </td>
+                      <td>
+                        <a href="/DeleteData/<%= BD.id %>">DeleteData</a> ||
+                        <a href="/UpdateDataPage/<%= BD.id %>">UpdateData</a>
+                      </td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<%- include('footer') %>

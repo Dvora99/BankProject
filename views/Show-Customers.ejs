@@ -1,0 +1,74 @@
+<%- include('header') %>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Admin Details</h4>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>
+                        No.
+                      </th>
+                      <th>
+                        Photo
+                      </th>
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Email
+                      </th>
+                      <th>
+                        BankName
+                      </th>
+                      <th>
+                        BankBranch
+                      </th>
+                      <th>
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% var i = 1 %>
+                    <% for (var d of Data) { %>
+                    <tr>
+                      <td>
+                        <%= i++ %>
+                      </td>
+                      <td class="py-1">
+                        <img src="<%= d.ProfilePicture %>"/>
+                      </td>
+                      <td>
+                        <%= d.name %>
+                      </td>
+                      <td>
+                        <%= d.email %>
+                      </td>
+                      <td>
+                        <%= d.BankNameID.BankName %>
+                      </td>
+                      <td>
+                        <%= d.BankBranchID.BankBranch %>
+                      </td>
+                      <td>
+                        <a href="/DeleteData/<%= d.id %>">DeleteData</a> ||
+                        <a href="/UpdateDataPage/<%= d.id %>">UpdateData</a>
+                      </td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<%- include('footer') %>

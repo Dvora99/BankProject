@@ -1,0 +1,67 @@
+<%- include('header') %>
+
+<div class="main-panel">        
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-md-8 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Bank Branch</h4>
+              <p class="card-description">
+                Enter Bank Branch Name
+              </p>
+              <form class="forms-sample" method="post" action="/bankbranch/insertBankBranchName">
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Bank Name</label>
+                  <select name="BankNameID" id="BankNameID" class="form-control" onchange="return getbankcode(this)">
+                    <option value=""> ---- Select Bank Name ---- </option>
+                    <% for(var BN of BankName) { %>
+                      <option value="<%= BN.id %>" id="name"><%= BN.BankName %></option>
+                    <% } %>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Bank Branch</label>
+                  <input type="text" name="BankBranch" class="form-control" id="exampleInputUsername1" placeholder="Bank Branch Name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Branch IFSC Code</label>
+                  <input type="text" name="IFSCcode" id="IFSCcode" class="form-control" id="exampleInputUsername1" readonly placeholder="IFSCcode">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Branch Established Date</label>
+                  <input type="month" name="BranchDate" class="form-control" id="exampleInputUsername1">
+                </div>
+                <button type="Submit" class="btn btn-primary me-2">Submit</button>
+                <a class="btn btn-light">Cancel</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+
+      function getbankcode(sel)
+      {
+        var bankname = sel.options[sel.selectedIndex].text
+        var result = bankname.split(' ').map(letters => letters.charAt(0)).join('')
+        let ifsc = result + Math.ceil(Math.random(0.1) * 1000000)
+        document.getElementById('IFSCcode').value = ifsc
+        $.ajax({
+          url : '/bankbranch/insertBankBranchName',
+          type : 'post',
+          data : {
+            IFSC : result
+          }
+        })
+      }
+    </script>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <%- include('footer') %>
+    <!-- partial -->
+</div>
+</div>
