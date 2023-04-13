@@ -7,11 +7,20 @@ const path = require('path')
 const session = require('express-session')
 const cookie = require('cookie-parser')
 const flash = require('connect-flash');
+const mongoose = require('mongoose')
 
 const flashConfig = require('./config/flash')
-const db = require('./config/mongoose')
 const passportLocal = require('./config/passport-local-stretagy');
 const passportLocalCustomer = require('./config/passport-customer-stretagy')
+
+mongoose.connect('mongodb+srv://durveshvora9:RRPaUn6lIgCB8gXs@cluster0.g7zggjj.mongodb.net/ProjectBank').then(()=> {
+    console.log('DB Connected')
+}).catch ((err)=> {
+    if(err)
+    {
+        console.log(err)
+    }
+})
 
 app.set('view engine', 'ejs')
 app.use(express.static('assets'));
