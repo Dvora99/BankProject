@@ -9,7 +9,7 @@ passport.use(new passportLocal({
     usernameField : 'email'
 }, async (email,password,done) => {
     let data = await Admin.findOne({email : email})
-    console.log(data)
+    // console.log(data)
     if(!data || data.password != password)
     {
         console.log('Data Not Found')

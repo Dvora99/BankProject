@@ -50,13 +50,6 @@
         var result = bankname.split(' ').map(letters => letters.charAt(0)).join('')
         let ifsc = result + Math.ceil(Math.random(0.1) * 1000000)
         document.getElementById('IFSCcode').value = ifsc
-        $.ajax({
-          url : '/bankbranch/insertBankBranchName',
-          type : 'post',
-          data : {
-            IFSC : result
-          }
-        })
       }
     </script>
     <!-- content-wrapper ends -->

@@ -84,7 +84,7 @@ module.exports.DeleteData = async (req,res) => {
         return res.redirect('back')
     }
     else{
-        fs.unlinkSync(path.join(__dirname, data.ProfilePicture))
+        fs.unlinkSync(path.join(__dirname, '../assets' ,data.ProfilePicture))
         await Admin.findByIdAndDelete(req.params.id)
         req.flash('success', 'Data Deleted')
         return res.redirect('back')
@@ -109,7 +109,7 @@ module.exports.UpdateData = async (req,res) => {
     // if(!data.ProfilePicture || data.ProfilePicture == 'undefined')
     if(data.ProfilePicture)
     {
-        fs.unlinkSync(path.join(__dirname, data.ProfilePicture))
+        fs.unlinkSync(path.join(__dirname, '../assets' ,data.ProfilePicture))
 
         req.body.ProfilePicture = Admin.Imgpath + '/' + req.file.filename
         req.body.name = req.body.fname + ' ' + req.body.lname
